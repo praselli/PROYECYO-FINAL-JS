@@ -129,7 +129,7 @@ function loadPayments() {
         
         // Icono de eliminación:
         const iconoEliminar = document.createElement("img");
-        iconoEliminar.src = "../svg/X.svg";
+        iconoEliminar.src = "svg/X.svg";
         iconoEliminar.alt = "Eliminar pago";
         iconoEliminar.className = "icono-eliminar";
         
