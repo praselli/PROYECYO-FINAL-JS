@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROYECTO FINAL</title>
+    <link rel="shortcut icon" href="img/PR.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="encabezado">
+
+            <h1 class="titulo">RECORDATORIO DE PAGOS</h1>
+
+            <p id="currentDate" class="fecha"></p>
+
+        </div>
+
+        <div class="cotizaciones">
+
+            <!-- Aquí se mostrarán las cotizaciones de las monedas obtenidas de la API -->
+
+        </div>
+
+        <p class="aclaracion1 textoAclaracion">IMPORTANTE: Los pagos ingresados se verán en la "Lista de pagos".</p>
+        <p class="aclaracion2 textoAclaracion">Para cargar un nuevo pago solo complete el formulario en la parte superior y presione "Agregar Pago".</p>
+        <p class="aclaracion3 textoAclaracion">Para eliminar un pago de la lista, presione el botón [X] que figura a la izquierda de cada pago.</p>
+        <p class="aclaracion4 textoAclaracion">Para tildar un pago como "Pagado" persiones el casillero a la derecha de cada pago. Mientras este casillero esté seleccionado, el pago se descontará del total.</p>
+
+        <form class="formularioPrincipal" id="formularioPagos">
+
+            <label class="textoDescripción textoForm" for="nombrePago">Descripción Pago:</label>
+            <input class="imputDescripción" type="text" id="nombrePago" required>
+            <label class="textoVencimiento textoForm" for="diaPago">Vencimiento:</label>
+            <input class="imputVencimiento" type="number" id="diaPago" min="1" max="31" required>
+            <label class="textoMonto textoForm" for="montoPago">Monto:</label>
+            <input class="imputMonto" type="number" id="montoPago" required>
+            <button class="botonAgregar" type="submit">Agregar Pago</button>
+
+        </form>
+
+        <h2 class="subTitulo">Lista de Pagos:</h2>
+
+        <div class="listaPagos" id="listaPagos">
+
+        <!-- Aquí se mostrarán los pagos ingresados -->
+
+        </div>
+        
+        <div id="totalPagos"></div>
+
+    </div>    
+
+
+    <footer>
+
+        <a class="iconosFooter iconoFooter1" href="https://praselli.github.io/pablo.raselli.portfolio/" target="_blanck">
+            <img class="iconoFooter" src="/svg/logoPersonal.svg" alt="">
+        </a>
+        
+        <a class="iconosFooter iconoFooter2" href="https://www.linkedin.com/in/pablo-raselli-9b0576257/" target="_blanck">
+            <img class="iconoFooter" src="/svg/linkedIn.svg" alt="logoLinkedIn">
+        </a>
+
+        <a class="iconosFooter iconoFooter3" href="https://www.instagram.com/pablo_raselli/" target="_blanck">
+            <img class="iconoFooter" src="/svg/instagram.svg" alt="logoInstragram">
+        </a>
+
+        <div class="contenedorLeyenda">
+            <p class="nombre-Footer textoFooter" >Pablo Javier Raselli</p>
+            <p class="leyenda-Footer textoFooter">Todos los derechos reservados</p>
+        </div>
+
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    
+    <script src="./js/main.js"></script>
+
+</body>
+
+</html>
