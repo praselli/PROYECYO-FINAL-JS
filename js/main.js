@@ -27,6 +27,7 @@ async function mostrarCotizaciones() {
         // esta referenciado al dolar por defecto) y divido ese valor sobre el valor del peso argentino.
         // De esta manera obtengo un valor muy parecido al los que figuran en las web de cotizaciones.
         // De todas maneras, todo está calculado sobre los valores que figuran en la API.
+        
         const cotizaciones = {
             "USD": arsValue / data.rates.USD,
             "EUR": arsValue / data.rates.EUR,
@@ -129,7 +130,7 @@ function loadPayments() {
         
         // Icono de eliminación:
         const iconoEliminar = document.createElement("img");
-        iconoEliminar.src = "svg/X.svg";
+        iconoEliminar.src = "svg/iconX.svg";
         iconoEliminar.alt = "Eliminar pago";
         iconoEliminar.className = "icono-eliminar";
         
