@@ -87,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Limpiar formulario:
         document.querySelector("#formularioPagos").reset();
 
-        // Mostrar notificación de Toastify:
-        mostrarNotificacion();
+        // Mostrar notificación de Toastify al agregar un pago:
+        mostrarNotificacion("Pago agregado con éxito");
     });
 
     document.querySelector("#listaPagos").addEventListener("click", function(event) {
@@ -181,9 +181,37 @@ function eliminarPago(pago) {
     let pagos = JSON.parse(localStorage.getItem("pagos")) || [];
     // Encontrar y eliminar el pago por su descripción
     pagos = pagos.filter(item => JSON.stringify(item) !== pago);
+
+    // Mostrar notificación de Toastify para indicar que se eliminó un pago
+    mostrarNotificacion("Eliminaste un pago", "eliminar");
+
     localStorage.setItem("pagos", JSON.stringify(pagos));
     loadPayments();
     actualizarTotalPagos();
+}
+
+function mostrarNotificacion(mensaje, tipo) {
+    if (tipo === "eliminar") {
+        Toastify({
+            text: mensaje,
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#FF0000", // Color rojo para notificaciones de eliminación
+            stopOnFocus: true
+        }).showToast();
+    } else {
+        Toastify({
+            text: mensaje,
+            duration: 3000,
+            close: true,
+            gravity: "top",
+            position: "center",
+            backgroundColor: "#4caf50", // Color verde para otras notificaciones
+            stopOnFocus: true
+        }).showToast();
+    }
 }
 
 function marcarPagoComoPagado(pago, isChecked) {
@@ -204,42 +232,6 @@ function marcarPagoComoPagado(pago, isChecked) {
     localStorage.setItem("pagos", JSON.stringify(pagos));
     loadPayments();
     actualizarTotalPagos();
-}
-
-function mostrarNotificacion() {
-    let pagos = JSON.parse(localStorage.getItem("pagos")) || [];
-    if (pagos.length === 0) {
-        Toastify({
-            text: "Aún no hay pagos registrados.",
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "#333",
-            stopOnFocus: true
-        }).showToast();
-    } else {
-        const pagoMasCercano = pagos.reduce((prev, curr) => (getDiasHastaVencimiento(curr.dia) < getDiasHastaVencimiento(prev.dia) ? curr : prev));
-        const diasHastaVencimiento = getDiasHastaVencimiento(pagoMasCercano.dia);
-        Toastify({
-            text: `Restan ${diasHastaVencimiento} días para el próximo vencimiento.`,
-            duration: 3000,
-            close: true,
-            gravity: "top",
-            position: "center",
-            backgroundColor: "#4caf50",
-            stopOnFocus: true
-        }).showToast();
-    }
-}
-
-function getDiasHastaVencimiento(diaPago) {
-    const hoy = DateTime.local().day;
-    let diasHastaVencimiento = diaPago - hoy;
-    if (diasHastaVencimiento <= 0) {
-        diasHastaVencimiento += 31; // Asumimos que el mes tiene 31 días
-    }
-    return diasHastaVencimiento;
 }
 
 function displayCurrentDate() {
